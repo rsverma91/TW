@@ -1,0 +1,151 @@
+@mixin transition($timing, $type, $for) {
+    transition: $timing $type $for;
+    -o-transition: $timing $type $for;
+    -ms-transition: $timing $type $for;
+    -moz-transition: $timing $type $for;
+    -webkit-transition: $timing $type $for;
+}
+
+@mixin transform($option) {
+    transform: $option;
+    -o-transform: $option;
+    -ms-transform: $option;
+    -moz-transform: $option;
+    -webkit-transform: $option;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.hide {
+    display: none;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body,
+#app,
+.tw {
+    height: 100%;
+    background-color: #f2f2f2;
+    overflow: hidden;
+}
+
+/*** Custom Scroll Bar ***/
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #eee;
+}
+
+:hover::-webkit-scrollbar-track {
+    border: 1px solid #ddd;
+    background-color: #ddd;
+}
+
+::-webkit-scrollbar-thumb {
+    min-height: 25px;
+    background-color: #ddd;
+    -webkit-box-shadow: inset 1px 1px 0 #CFCFCF, inset 0 -1px 0 #CFCFCF;
+    box-shadow: inset 1px 1px 0 #CFCFCF, inset 0 -1px 0 #CFCFCF;
+}
+
+:hover::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    -webkit-box-shadow: inset 1px 1px 0 #ddd, inset 0 -1px 0 #ddd;
+    box-shadow: inset 1px 1px 0 #ddd, inset 0 -1px 0 #ddd;
+}
+
+.checkbox {
+    overflow: hidden;
+
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    .custom-checkbox {
+        display: inline-block;
+        vertical-align: middle;
+        width: .85em;
+        height: .85em;
+        border: 1px solid #aaa;
+        position: relative;
+        border-radius: 1px;
+        cursor: pointer;
+        @include transition(0.2s, ease, background-color);
+
+        &::after {
+            content: "";
+            cursor: pointer;
+            position: absolute;
+            width: .35em;
+            height: .6em;
+            left: .22em;
+            top: 0px;
+            border: 2px solid #fff;
+            border-left: 0;
+            border-top: 0;
+            @include transform(rotate(45deg) scale(0));
+            @include transition(0.2s, ease, all);
+        }
+    }
+
+    .checkbox-text {
+        margin-left: 5px;
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        font-size: .9em;
+        color: #666;
+        width: calc(100% - 23px);
+        cursor: pointer;
+    }
+
+    input[type="checkbox"][disabled]~.checkbox-text {
+        color: #aaa;
+        cursor: default;
+    }
+
+    input[type="checkbox"]:checked+.custom-checkbox {
+        @include transition(0.2s, ease, background-color);
+        background-color: #666;
+        border-color: #666;
+    }
+
+    input[type="checkbox"]:checked+.custom-checkbox::after {
+        content: "";
+        @include transition(0.2s, ease, all);
+        @include transform(rotate(45deg) scale(1));
+    }
+
+    input[type="checkbox"][disabled]+.custom-checkbox {
+        background-color: #aaa;
+        cursor: default;
+        border-color: #aaa;
+    }
+
+    input[type="checkbox"][disabled]+.custom-checkbox::after {
+        border-color: #aaa;
+    }
+}
