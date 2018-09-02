@@ -30,9 +30,13 @@ class ThoughtWorks extends Component {
     }
     componentDidMount() {
         fetchMovies(movieData => {
+            
+            // default sory by year
             movieData.sort((a, b) => {
                 return Number(b.title_year) - Number(a.title_year)
             })
+
+            // Filter Item object
             const generFilter = {}, plotFilter = {}, langFilter = {}, countryFilter = {};
             movieData.map(movies => {
                 if (movies.genres) {

@@ -20,7 +20,7 @@ class MovieListing extends Component {
     render() {
         return (
             <li className="movie-list">
-                <div className="movie-title">{this.props.movieInfo['movie_title']}</div>
+                <div className="movie-title">{this.props.movieInfo['movie_title']} ({this.props.movieInfo['content_rating']})</div>
                 <div className="movie-details">
                     {
                         Object.entries(this.props.movieInfo).map(

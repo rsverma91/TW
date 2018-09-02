@@ -18,6 +18,7 @@ class MainBody extends Component {
         }
         this.onMovieSelect = this.onMovieSelect.bind(this);
         this.setFilteredMovies = this.setFilteredMovies.bind(this);
+        this.setSortedMovies = this.setSortedMovies.bind(this);
     }
     componentWillReceiveProps(newProps) {
         this.setState({
@@ -36,15 +37,20 @@ class MainBody extends Component {
             movieToDisplay: filteredMovies
         });
     }
-    setFilteredMovies(filteredMovies){
+    setFilteredMovies(filteredMovies) {
         this.setState({
             movieToDisplay: filteredMovies
-        })
+        });
+    }
+    setSortedMovies(sortedMovies) {
+        this.setState({
+            movieToDisplay: sortedMovies
+        });
     }
     render() {
         return (
             <div className="main-body">
-                <ActionBlock setFilteredMovies={this.setFilteredMovies} filters={this.props.filters} isFetchingMovie={this.props.isFetchingMovie} onMovieSelect={this.onMovieSelect} movieData={this.props.movieData} />
+                <ActionBlock setSortedMovies={this.setSortedMovies} setFilteredMovies={this.setFilteredMovies} filters={this.props.filters} isFetchingMovie={this.props.isFetchingMovie} onMovieSelect={this.onMovieSelect} movieData={this.props.movieData} />
                 <MovieListing movieToDisplay={this.state.movieToDisplay} isFetchingMovie={this.props.isFetchingMovie} />
             </div>
         );

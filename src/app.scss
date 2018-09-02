@@ -127,6 +127,10 @@ body,
         cursor: default;
     }
 
+    input[type="checkbox"]:checked~.checkbox-text {
+        font-weight: 600;
+    }
+
     input[type="checkbox"]:checked+.custom-checkbox {
         @include transition(0.2s, ease, background-color);
         background-color: #666;
